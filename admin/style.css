@@ -1,0 +1,1074 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+nav {
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+}
+.nav-left {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+.nav-left a {
+  text-decoration: none;
+}
+
+
+.nav-right {
+  width: auto;
+  height: auto;
+  display: flex;
+}
+.nav-right h1 {
+  font-size: 20px;
+  margin: 0 20px;
+}
+.nav-right img {
+  border-radius: 50px;
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  margin: 0 20px 0 0px;
+}
+.nav-left h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.nav-right a button {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #99b674;
+  border: none;
+  width: 100px;
+  height: 50px;
+  border-radius: 6px;
+  margin-right: 100px;
+  box-shadow: 1px 1px 3px 1px rgb(167, 167, 167);
+}
+.nav-right a button:hover {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #7a915c;
+  border: none;
+  width: 100px;
+  height: 50px;
+  border-radius: 6px;
+  margin-right: 100px;
+  box-shadow: 1px 1px 1px 1px rgb(167, 167, 167);
+}
+nav img {
+  width: 100px;
+  height: 100px;
+}
+
+nav ul {
+  margin-top: 10px;
+  align-items: center;
+  display: flex;
+  list-style-type: none;
+}
+nav ul li {
+  align-items: center;
+}
+nav ul li a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  margin-left: 20px;
+  text-align: center;
+  align-items: center;
+}
+nav ul li a:hover {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  font-weight: bold;
+  text-decoration: none;
+  color: #7a915c;
+  margin-left: 20px;
+  text-align: center;
+  align-items: center;
+}
+
+.title {
+  margin: 100px 0 0 100px;
+  width: 700px;
+  height: auto;
+}
+.title h1 {
+  font-size: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+}
+.description {
+  margin: 0 0 0 100px;
+  width: auto;
+  max-width: 700px;
+}
+.description p {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+}
+.btn-discover {
+  margin: 0 0 0 100px;
+}
+.btn-discover a button {
+  background-color: #7a915c;
+  color: white;
+  width: 400px;
+  height: 40px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 4px 1px rgb(167, 167, 167);
+  border: none;
+}
+
+.btn-discover a button:hover {
+  background-color: #3b472c;
+  color: white;
+  width: 400px;
+  height: 40px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px 1px rgb(167, 167, 167);
+  border: none;
+}
+
+.cover-content-card {
+  margin-top: 500px;
+  padding: 0 20px;
+  height: 700px;
+}
+
+.cover-content-card h1 {
+  font-size: 70px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+/* Kontainer fitur */
+.cover-main-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 70px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+/* Setiap fitur */
+.feature {
+  background-color: #99b674;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Gambar fitur */
+.feature img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* Judul fitur */
+.feature h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+/* Deskripsi fitur */
+.feature p {
+  font-size: 1rem;
+  color: #ffffff;
+  line-height: 1.5;
+  padding: 0 10px;
+}
+
+.cover-review {
+  text-align: center;
+  margin: 70px 0 0 0;
+  justify-items: center;
+}
+.cover-review h1 {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.cover-review-card {
+  margin: 50px 10px 50px 10px;
+  border: 1px solid #000000;
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+  background-color: white;
+}
+.cover-review-cards {
+  display: flex;
+}
+
+.cover-review-card-header {
+  margin: 20px 0 0 20px;
+  display: flex;
+  align-items: center;
+}
+.cover-review-card-header img {
+  margin: 0 20px 0 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+}
+.cover-review-card-header h2 {
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.cover-review-card-rating {
+  margin-top: 50px;
+}
+.cover-review-card-text {
+  margin: 10px auto 0px;
+  width: 400px;
+}
+
+.cover-review-card-footer {
+  align-items: center;
+  display: flex;
+  margin: 0px 50px 0 50px;
+}
+
+.cover-review-card-footer img {
+  margin: 0px auto;
+  width: 100px;
+  height: 100px;
+}
+
+.cover-footer {
+  margin: 200px 0 0 0;
+  display: flex;
+}
+
+.logo-footer {
+  margin: 0 100px 100px 70px;
+  border-radius: 30px;
+  background-color: white;
+  width: 300px;
+  height: 300px;
+}
+.logo-footer img {
+  width: 300px;
+  height: 300px;
+}
+.about-us-footer {
+  color: white;
+  margin: 0 200px 0 0;
+}
+.about-us-footer h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+}
+.about-us-footer a {
+  text-decoration: none;
+  font-size: 24px;
+  color: white;
+}
+.about-us-footer a:hover {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: #99b674;
+}
+.information-footer {
+  color: #ffffff;
+}
+.information-footer h3 {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: lighter;
+}
+.information-footer h2 {
+  color: #ffffff;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.information-footer a {
+  text-decoration: none;
+  color: white;
+  font-size: 32px;
+  margin-right: 20px;
+}
+.information-footer a:hover {
+  text-decoration: none;
+  color: #99b674;
+  font-size: 32px;
+  margin-right: 20px;
+}
+.form-login-container {
+  display: flex;
+  justify-content: center;
+}
+.logo-login {
+  background-color: #ffffff;
+  width: 500px;
+  height: 500px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.logo-login img {
+  width: 490px;
+  height: 490px;
+}
+.form-logins {
+  background-color: rgb(159, 178, 131);
+  width: 500px;
+  height: 500px;
+  margin: 10px 0 40px px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+.form-logins-header {
+  padding: 15px 0 0 30px;
+}
+.form-logins-header a {
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+}
+.form-logins h1 {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  padding-top: 0px;
+  color: white;
+}
+.form-login {
+  justify-items: center;
+  margin: 30px 20px 10px 20px;
+}
+.form-login form label {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 20px 0 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+.form-login form input[type="text"] {
+  width: 300px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+.form-login form input[type="password"] {
+  width: 300px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+.form-login form button {
+  text-align: center;
+  font-size: 16px;
+  margin: 20px 100px 0 0;
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 1px 1px rgb(167, 167, 167);
+}
+.form-login form a {
+  font-size: 12px;
+}
+.form-login form button:hover {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  margin: 20px 100px 0 0;
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #7a915c;
+  box-shadow: 1px 1px 1px 1px rgb(167, 167, 167);
+}
+.beranda-berita {
+  margin: 30px 150px;
+}
+.beranda-berita h1 {
+  font-size: 32px;
+}
+.kategori-berita {
+  margin: 20px 0 0 0;
+}
+.kategori-button {
+  margin: 0 10px 0 0;
+  padding: 10px 15px;
+  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.kategori-button:hover {
+  background-color: #0056b3;
+  color: white;
+}
+.kategori-button:focus {
+  border: none;
+  background-color: #0056b3;
+  color: white;
+}
+
+.card-berita {
+  background-color: #ffffff;
+  border-radius: 10px;
+  height: 200px;
+  border: #000000 1px solid;
+  margin-top: 20px;
+}
+.card-berita-konten {
+  display: flex;
+  margin: 20px;
+  height: 150px;
+  align-self: center;
+}
+.card-berita-konten img {
+  align-self: center;
+  border-radius: 10px;
+  width: 130px;
+  height: 130px;
+}
+.konten-berita {
+  margin: 10px;
+}
+.konten-berita h1 {
+  font-size: 26px;
+}
+.konten-berita h2 {
+  font-size: 14px;
+  color: rgb(196, 195, 195);
+  margin-bottom: 0;
+}
+.konten-berita p {
+  font-size: 12px;
+}
+.button-berita {
+  margin: 100px 0 0 0;
+}
+
+.search-bar form input[type="text"] {
+  border-radius: 5px;
+  border: 0.5px solid black;
+  width: 1070px;
+  height: 50px;
+  text-indent: 15px;
+}
+.search-bar {
+  justify-items: center;
+}
+
+.filter-konten {
+  display: flex;
+  width: 1120px;
+  margin: 10px 0 0 0;
+  justify-content: center;
+  justify-content: space-between;
+  justify-self: center;
+  margin-right: 60px;
+}
+.input-filter input[type="text"] {
+  width: 300px;
+  border: 1px solid rgb(198, 198, 198);
+  margin-top: 5px;
+  border-radius: 5px;
+  height: 40px;
+  text-indent: 15px;
+}
+.dropdown-filter select {
+  border: 1px solid rgb(198, 198, 198);
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+  margin-top: 5px;
+}
+.dropdown-filter select:hover {
+  border: 1px solid rgb(198, 198, 198);
+  background-color: #99b674;
+  color: white;
+  border-radius: 5px;
+  width: 200px;
+  height: 40px;
+  margin-top: 5px;
+}
+.card-caritanah-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+}
+
+.title-daftar{
+  font-size: 48px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-caritanah {
+  background-color: #ffffff;
+  width: 270px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  margin-top: 10px;
+  margin-left: 10px;
+  border: #ddd 1px solid;
+}
+.card-caritanah:hover {
+  background-color: #ffffff;
+  width: 270px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  margin-top: 10px;
+  margin-left: 10px;
+  border: #5dc92f 2px solid;
+}
+.card-konten-caritanah {
+  padding: 20px;
+}
+.card-caritanah-img img {
+  border-radius: 5px;
+  width: 100%;
+  height: 150px;
+}
+.card-caritanah-body {
+  margin-top: 20px;
+}
+.card-caritanah-body h1 {
+  font-size: 24px;
+}
+.card-caritanah-body h2 {
+  font-size: 14px;
+  color: #3f3f3f;
+}
+.card-caritanah-body p {
+  font-size: 12px;
+  line-height: 0.7;
+}
+.image-tampilan{
+    display: flex;
+}
+.image-tampilan-left{
+    width: 150%;
+    height: auto;
+}
+.image-tampilan-left img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.image-tampilan-right{
+    display: grid;
+    margin: 0 0 0 20px;
+    gap: 10px;
+}
+.image-tampilan-right img{
+    width: 300px;
+    height: 170px;
+    border-radius: 20px;
+}
+.informasi-tanah{
+    margin: 20px 0 0 0;
+}
+.informasi-kategori{
+    display:flex ;
+}
+.informasi-kategori p{
+    width: 150px;
+    height: 30px;
+    margin: 0 20px 0 0;
+    text-align: center;
+    background-color: #99b674;
+    border-radius: 30px;
+    align-content: center;
+}
+.informasi-title{
+    height: auto;
+}
+.informasi-container{
+    width: 1000px;
+    border-radius: 20px;
+}
+.informasi-kontak{
+    border: none;
+    width: 300px;
+    height: 250px;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.konten-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.informasi-konten table th {
+    width: 200px;
+}
+.informasi-kontak-gambar img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+.informasi-kontak-header{
+    display: flex;
+    margin: 20px;
+}
+.informasi-kontak-user{
+    margin: 0 0 0 10px;
+    line-height: 0.2;
+    justify-content: center;
+    align-content: center;
+}
+.informasi-kontak-body{
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+}
+#button-kontak{
+    width: 130px; 
+    height: 50px; 
+    border: 1px solid rgb(45, 144, 244);
+    border-radius: 10px;
+    background-color: white;    
+}
+#button-kontak:hover{
+    width: 130px; 
+    height: 50px; 
+    border: 1px solid rgb(45, 144, 244);
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(45, 144, 244);    
+}
+#button-wa{
+    width: 130px; 
+    height: 50px; 
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #53ae2c;   
+}
+#button-wa:hover{
+    width: 130px; 
+    height: 50px; 
+    border-radius: 10px;
+    border: none;
+    background-color: #276525;   
+}
+.upload-form form input{
+    width: 700px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px #b5b5b5 solid;
+    text-indent: 10px;
+}
+.upload-form form select{
+    width: 700px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px #b5b5b5 solid;
+    text-indent: 5px;
+}
+.upload-form form textarea{
+    width: 700px;
+}
+.card-daftar-tanah{
+    border: #ddd 1px solid;
+    display: flex;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    margin-top: 20px;
+}
+.daftar-informasi-container{
+    margin: 10px;
+}
+
+.daftar-image{
+    width:400px;
+    height: 250px;
+    margin: 20px 0 20px 20px;
+}
+.daftar-image img{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+.daftar-informasi{
+    margin: 0 20px 0    ;
+    width: 90%;
+    height: auto;
+}
+.daftar-informasi-header h1{
+    margin-top: 20px;
+    font-size: 24px;
+}
+.daftar-informasi-tanah{
+    display: flex;
+}
+.daftar-informasi-tanah p{
+    margin: 0 20px 0 0 ;
+}
+.daftar-informasi-footer{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.daftar-informasi-footer h1{
+    font-size: 32px;
+    color: rgb(77, 118, 214);
+}
+.card-produk-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  gap: 20px;
+}
+.card-produk{
+  width: 200px;
+  height: 320px;
+  border: 1px solid rgb(219, 218, 218);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.card-produk:hover{
+  width: 200px;
+  height: 320px;
+  border: 2px solid #5dc92f;
+  border-radius: 10px;
+}
+.card-produk-img{
+  width: auto;
+  height: 150px;
+}
+.card-produk-img img{
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.card-produk-desc{
+  padding: 10px;
+}
+.desc-produk-kategori p{
+  border: 1px solid #5dc92f;
+  border-radius: 5px;
+  width: 70px;
+  height: 20px;
+  margin: 0 10px 0 0;
+  font-size: 12px;
+  text-align: center;
+  align-content: center;
+}
+.desc-produk-kategori {
+  margin: 0;
+  padding: 0;
+}
+
+.form-standar-harga{
+  width: 500px;
+  height: 500px;
+  margin: 0 20px;
+  border: 1px solid rgb(219, 218, 218);
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.form-standar-harga-items{
+  margin: 20px;
+}
+.form-standar-harga-items select{
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+}
+.form-standar-harga-items input{
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+
+.header-tampilan-produk{
+  display: flex;
+  background-color: white;
+  box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgb(219, 218, 218);
+  border-radius: 20px;
+}
+.informasi-tampilan-produk-container{
+  margin-left: 30px;
+}
+.title-tampilan-produk{
+  margin-top: 20px;
+}
+
+.rating-tampilan-produk{
+  display: flex;
+  width: 300px;
+  height: 30px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.kota-tampilan-produk{
+  margin: 30px 0;
+}
+.kuantitas-tampilan-produk{
+  margin-top: 120px;
+}
+.button-keranjang-tampilan-produk{
+  margin-top: 50px;
+}
+.button-keranjang-tampilan-produk button{
+  width: 200px;
+  height: 50px;
+  background-color: #deedc9;
+  border: 2px solid #5ee027;
+  border-radius: 5px;
+}
+.button-keranjang-tampilan-produk button:hover{
+  width: 200px;
+  height: 50px;
+  background-color: #effeda;
+  border: 2px solid #5ee027;
+  border-radius: 5px;
+}
+.desc-tampilan-produk-container{
+  border: 1px solid rgb(219, 218, 218);
+  margin-top: 20px;
+  width: 900px;
+  height: auto;
+  box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+}
+.spesifikasi-tampilan-produk table{
+  width: 300px;
+  border-collapse: collapse;
+}
+.spesifikasi-tampilan-produk table td{
+  width: 20px;
+  height: 50px;
+}
+.kontak-tampilan-produk{
+  margin: 20px 0 0 20px;
+  border: 1px solid rgb(219, 218, 218);
+  width: 380px;
+  height: 250px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.review-tampilan-produk-container{
+  border: 1px solid rgb(219, 218, 218);
+  width: 900px;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.review-tampilan-produk{
+  margin: 20px 30px;
+}
+.review-tampilan-produk h1{
+  font-size: 24px;
+}
+.review-tampilan-produk p{
+  font-size: 18px;
+  color: gray;
+}
+.card-review-tampilan-produk{
+  border: 1px solid rgb(0, 0, 0);
+  width: 850px;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+.review-top-tampilan-produk{
+  margin: 20px 0 0 0;
+}
+.review-img-tampilan-produk{
+  border: 1px solid rgb(219, 218, 218);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.review-img-tampilan-produk img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.review-title-tampilan-produk{
+  margin-left: 10px;
+}
+.review-title-tampilan-produk p{
+  width: 100px;
+  height: 5px;
+}
+.review-body-tampilan-produk table{
+  width: 200px;
+}
+.review-body-tampilan-produk table td{
+  width: 200px;
+}
+
+.img-tampilan-container{
+  margin: 20px 0;
+  width: 1000px;
+  height: 500px;
+}
+.img-tampilan-container img{
+  width:100%;
+  height: 100%;
+}
+
+.button-keranjang-tampilan-produk{
+  margin-top: 50px;
+}
+.button-keranjang-tampilan-produk button{
+  width: 200px;
+  height: 50px;
+  background-color: #deedc9;
+  border: 2px solid #5ee027;
+  border-radius: 5px;
+}
+.button-keranjang-tampilan-produk button:hover{
+  width: 200px;
+  height: 50px;
+  background-color: #effeda;
+  border: 2px solid #5ee027;
+  border-radius: 5px;
+}
+
+.header-keranjang h2{
+  font-size: 16px;
+  margin: 0 50px 0 20px;
+}
+.header-keranjang {
+  margin: 20px 0;
+  width: auto;
+  height: 30px;
+  align-items: center;
+}
+.produk-keranjang-item{
+  margin: 20px;
+}
+.produk-keranjang{
+  border: 1px solid rgb(229, 229, 229);
+  margin: 20px 0;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.keranjang-checkbox{
+  align-content: center;
+}
+.keranjang-checkbox input{
+  width: 20px;
+  height: 20px;
+}
+.keranjang-img{
+  width: 100px;
+  height: 100px;
+}
+.keranjang-img img{
+  width: 100%;
+  height: 100%;
+}
+.keranjang-title{
+  width: 400px;
+  margin-left: 20px;
+  margin-right: 140px;
+  align-content: center;
+}
+.produk-keranjang-item h1{
+  font-size: 16px;
+}
+.keranjang-kuantitas input{
+  width: 70px;
+  text-align: center;
+}
+.keranjang-kuantitas{
+  align-content: center;
+  margin-right: 70px;
+}
+.keranjang-harga{
+  align-content: center;
+  margin: 0 70px 0 0;
+}
+.totalharga-keranjang{
+  align-content: center;
+  margin-right: 70px;
+}
+.button-aksi-keranjang{
+  align-content: center;
+}
+.keranjang-checkout-item button{
+  width: 200px;
+  height: 50px;
+  background-color: #5dc92f;
+  border: 1px solid #5ee027;
+}
+.keranjang-checkout-item{
+  justify-content: space-between;
+  display: flex;
+  margin: 20px;
+  align-items: center;
+}
+.keranjang-checkout{
+  align-content: center;
+  border: 1px solid rgb(229, 229, 229);
+  margin: 30px 0;
+  height: 100px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  position: sticky;
+}
+.keranjang-checkout h1{ 
+  font-size: 28px;
+
+}
+.keranjang-checkout-item button:hover{
+  width: 200px;
+  height: 50px;
+  background-color: #6ce439;
+  border: 1px solid #5ee027;
+}

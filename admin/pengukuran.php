@@ -395,73 +395,67 @@ session_start();
 
   <script>
     // Fungsi untuk menggambar meteran
-    function drawGauge(canvasId, actualValue, actualMaxParamValue, rangesData) {
+      function drawGauge(canvasId, actualValue, actualMaxParamValue, rangesData) {
         const canvas = document.getElementById(canvasId);
         const ctx = canvas.getContext('2d');
         const radius = canvas.width / 2;
         const center = radius;
-        const gaugeScaleMax = 6; // Skala tetap pada tampilan meteran (0-6)
+        const gaugeScaleMax = 6; // Tetap gunakan 6 skala
+        const numLabels = 6; // Jumlah label besar (angka)
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Fungsi bantu untuk memetakan nilai aktual ke skala meteran (0-6)
         const mapToGaugeScale = (val) => (val / actualMaxParamValue) * gaugeScaleMax;
 
-        // Fungsi bantu untuk memetakan emoji ke warna
         const mapEmojiToColor = (emoji) => {
             if (emoji === '🟥') return 'red';
-            if (emoji === '🟨') return 'gold'; // Menggunakan 'gold' agar lebih terlihat dari kuning standar
+            if (emoji === '🟨') return 'gold';
             if (emoji === '🟩') return 'green';
-            return '#ccc'; // Warna default jika tidak cocok
+            return '#ccc';
         };
 
-        // Gambar busur utama (latar belakang meteran)
+        // Background gauge
         ctx.beginPath();
-        ctx.arc(center, center, radius - 10, Math.PI, 0); // Dari 180 derajat (kiri) ke 0 derajat (kanan)
+        ctx.arc(center, center, radius - 10, Math.PI, 0);
         ctx.lineWidth = 4;
         ctx.strokeStyle = '#ccc';
         ctx.stroke();
 
-        // Gambar bagian berwarna (busur) sesuai rentang
+        // Draw colored ranges
         for (const range of rangesData) {
-            let startValActual, endValActual;
+            let startValActual = 0;
+            let endValActual = actualMaxParamValue;
 
-            // Menentukan nilai awal dan akhir aktual berdasarkan operator (<, >, atau rentang)
             if (range.start_op === '<') {
-                startValActual = 0;
                 endValActual = range.end;
             } else if (range.end_op === '>') {
                 startValActual = range.start;
-                endValActual = actualMaxParamValue; // Gunakan nilai maks parameter
             } else {
                 startValActual = range.start;
                 endValActual = range.end;
             }
 
-            // Normalisasi nilai aktual ke skala meteran 0-6
             let startValNormalized = mapToGaugeScale(startValActual);
             let endValNormalized = mapToGaugeScale(endValActual);
-            
-            // Pastikan nilai berada dalam batas skala meteran (0-6)
+
             startValNormalized = Math.max(0, Math.min(gaugeScaleMax, startValNormalized));
             endValNormalized = Math.max(0, Math.min(gaugeScaleMax, endValNormalized));
 
-            // Konversi nilai normalisasi ke sudut (0 di kiri (PI), 6 di kanan (0))
             const startAngle = Math.PI * (1 - startValNormalized / gaugeScaleMax);
             const endAngle = Math.PI * (1 - endValNormalized / gaugeScaleMax);
 
             ctx.beginPath();
-            // Menggambar busur: jika startAngle > endAngle, gambar berlawanan arah jarum jam (untuk segmen dari kiri ke kanan pada meteran)
             ctx.arc(center, center, radius - 10, startAngle, endAngle, startAngle > endAngle);
             ctx.lineWidth = 4;
             ctx.strokeStyle = mapEmojiToColor(range.emoji);
             ctx.stroke();
         }
 
-        // Gambar tanda centang utama dan label (tetap 0-6)
-        for (let i = 0; i <= gaugeScaleMax; i++) {
-            const angle = Math.PI * (1 - i / gaugeScaleMax); // Sudut dari PI (0) ke 0 (6)
-            const tickLength = 10; // Panjang tanda centang utama
+        // Major ticks and labels (avoid duplicates)
+        const usedLabels = new Set();
+        for (let i = 0; i <= numLabels; i++) {
+            const angle = Math.PI * (1 - i / numLabels);
+            const tickLength = 10;
             const x1 = center + Math.cos(angle) * (radius - 10 - tickLength);
             const y1 = center + Math.sin(angle) * (radius - 10 - tickLength);
             const x2 = center + Math.cos(angle) * (radius - 10);
@@ -474,35 +468,39 @@ session_start();
             ctx.strokeStyle = 'black';
             ctx.stroke();
 
-            ctx.font = '12px Arial';
-            ctx.fillStyle = 'black';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            const xLabel = center + Math.cos(angle) * (radius - 35); // Sesuaikan posisi label
-            const yLabel = center + Math.sin(angle) * (radius - 35);
-            ctx.fillText(i, xLabel, yLabel);
-        }
+            let actualLabel = (actualMaxParamValue * i) / numLabels;
+            actualLabel = actualMaxParamValue < 10 ? parseFloat(actualLabel.toFixed(1)) : Math.round(actualLabel);
 
-        // Gambar tanda centang kecil (setengah)
-        for (let i = 0.5; i < gaugeScaleMax; i += 0.5) {
-            if (i % 1 !== 0) { // Hanya untuk tanda setengah, bukan tanda utama
-                const angle = Math.PI * (1 - i / gaugeScaleMax);
-                const tickLength = 5; // Panjang tanda centang kecil
-                const x1 = center + Math.cos(angle) * (radius - 10 - tickLength);
-                const y1 = center + Math.sin(angle) * (radius - 10 - tickLength);
-                const x2 = center + Math.cos(angle) * (radius - 10);
-                const y2 = center + Math.sin(angle) * (radius - 10);
-
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = 'black';
-                ctx.stroke();
+            if (!usedLabels.has(actualLabel)) {
+                usedLabels.add(actualLabel);
+                const xLabel = center + Math.cos(angle) * (radius - 35);
+                const yLabel = center + Math.sin(angle) * (radius - 35);
+                ctx.font = '12px Arial';
+                ctx.fillStyle = 'black';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(actualLabel, xLabel, yLabel);
             }
         }
 
-        // Gambar jarum
+        // Minor ticks (optional)
+        for (let i = 0.5; i < gaugeScaleMax; i += 0.5) {
+            const angle = Math.PI * (1 - i / gaugeScaleMax);
+            const tickLength = 5;
+            const x1 = center + Math.cos(angle) * (radius - 10 - tickLength);
+            const y1 = center + Math.sin(angle) * (radius - 10 - tickLength);
+            const x2 = center + Math.cos(angle) * (radius - 10);
+            const y2 = center + Math.sin(angle) * (radius - 10);
+
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+        }
+
+        // Draw needle
         const normalizedCurrentValue = Math.max(0, Math.min(gaugeScaleMax, mapToGaugeScale(actualValue)));
         const needleAngle = Math.PI * (1 - normalizedCurrentValue / gaugeScaleMax);
         const xNeedle = center + Math.cos(needleAngle) * (radius - 50);
@@ -512,13 +510,13 @@ session_start();
         ctx.moveTo(center, center);
         ctx.lineTo(xNeedle, yNeedle);
         ctx.lineWidth = 4;
-        ctx.strokeStyle = 'black'; // Jarum selalu hitam
+        ctx.strokeStyle = 'black';
         ctx.stroke();
 
-        // Gambar lingkaran tengah untuk poros jarum
+        // Needle center dot
         ctx.beginPath();
         ctx.arc(center, center, 8, 0, 2 * Math.PI);
-        ctx.fillStyle = 'black'; // Titik tengah selalu hitam
+        ctx.fillStyle = 'black';
         ctx.fill();
     }
 

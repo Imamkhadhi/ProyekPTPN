@@ -1,12 +1,20 @@
 <?php
-require "vendor/autoload.php";
-include "koneksi.php"; // koneksi ke database
+require "../vendor/autoload.php";
+include "koneksi.php"; 
 
 use Dompdf\Dompdf;
 
 // Ambil data jurnal dari database
 $query = mysqli_query($conn, "SELECT tanggal, jam, uap_masuk, uap_bekas, tekanan_oli, cooling_water, voltase, ampere, kw, frekuensi FROM jurnal ORDER BY id_jurnal DESC LIMIT 24");
 $dataJurnal = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+// Siapkan path absolut gambar logo (HARUS BASE64 untuk DOMPDF)
+$logoPath = realpath('../images/logo_perkebunan_nusantara.png');
+if (!file_exists($logoPath)) {
+    die("Gambar tidak ditemukan: $logoPath");
+}
+$logoData = base64_encode(file_get_contents($logoPath));
+$logoSrc = 'data:image/png;base64,' . $logoData;
 
 // Inisialisasi Dompdf
 $dompdf = new Dompdf();
@@ -28,14 +36,12 @@ $html = '
         display: table;
         table-layout: fixed;
     }
-    .bottom-row { display: table-row; }
     .bottom-cell {
         display: table-cell;
         vertical-align: top;
         padding: 0 2px;
     }
     .notes-box { height: 30px; border: 1px solid black; width: 100%; margin-top: 2px; }
-    .signature-container { text-align: center; }
     .signature-lines { margin-top: 20px; }
     .signature-line-text { font-size: 8px; }
     .footer-table td { font-size: 8px; border: 1px solid black; text-align: center; padding: 2px; }
@@ -44,7 +50,7 @@ $html = '
 <table class="no-border" style="margin-bottom: 3px;">
     <tr>
         <td class="no-border" width="10%" style="text-align: left;">
-            <img src="logo.png" width="60" height="30">
+            <img src="' . $logoSrc . '" width="60" height="30">
         </td>
         <td class="no-border" width="30%" style="text-align: left;">
             <b>PTPN:</b> PTPN II<br>
@@ -104,15 +110,13 @@ $html = '
     <tbody>';
 
 // Masukkan data dari database ke tabel PDF
-foreach ($dataJurnal as $index => $row) {
+foreach ($dataJurnal as $row) {
     $html .= '<tr>';
     $html .= '<td>' . htmlspecialchars(date('H:i', strtotime($row['jam']))) . '</td>';
-    $html .= '<td>' . htmlspecialchars($row['uap_masuk']) . '</td>';
-    $html .= '<td>-</td>';
-    $html .= '<td>' . htmlspecialchars($row['uap_bekas']) . '</td>';
-    $html .= '<td>-</td>';
+    $html .= '<td>' . htmlspecialchars($row['uap_masuk']) . '</td><td>-</td>';
+    $html .= '<td>' . htmlspecialchars($row['uap_bekas']) . '</td><td>-</td>';
     $html .= '<td>' . htmlspecialchars($row['tekanan_oli']) . '</td>';
-    $html .= '<td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>';
+    $html .= '<td>-</td><td>-</td><td>-</td><td>-</td>';
     $html .= '<td>' . htmlspecialchars($row['cooling_water']) . '</td><td>-</td>';
     $html .= '<td>' . htmlspecialchars($row['voltase']) . '</td>';
     $html .= '<td>' . htmlspecialchars($row['ampere']) . '</td>';
@@ -136,9 +140,7 @@ $html .= '
     </div>
     <div class="bottom-cell" style="width: 30%;">
         <table class="signature-table" width="100%">
-            <tr>
-                <td colspan="2">Digunakan dlm Standup mesin</td>
-            </tr>
+            <tr><td colspan="2">Digunakan dlm Standup mesin</td></tr>
             <tr>
                 <td colspan="2" class="signature-lines">
                     (_______________________)<br>
@@ -149,9 +151,7 @@ $html .= '
     </div>
     <div class="bottom-cell" style="width: 30%;">
         <table class="signature-table" width="100%">
-            <tr>
-                <td colspan="2">Diketahui Oleh</td>
-            </tr>
+            <tr><td colspan="2">Diketahui Oleh</td></tr>
             <tr>
                 <td colspan="2" class="signature-lines">
                     (_______________________)<br>
@@ -167,8 +167,7 @@ $html .= '
     <tr><td>Jam Beroperasi</td><td></td><td></td></tr>
 </table>';
 
-// Render dan tampilkan PDF
+// Render PDF
 $dompdf->loadHtml($html);
 $dompdf->render();
 $dompdf->stream("laporan_turbin.pdf", ["Attachment" => false]);
-?>

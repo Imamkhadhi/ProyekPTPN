@@ -34,7 +34,7 @@ session_start();
 
     .navbar-brand img {
       height: 50px;
-      width: 70px;
+      width: 100px;
     }
 
     .logout-btn {
@@ -267,7 +267,7 @@ session_start();
   <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid"> 
       <a class="navbar-brand" href="#">
-        <img src="../images/LogoPTPN.jpg" alt="Logo PTPN" />
+        <img src="../images/logo_perkebunan_nusantara.jpg" alt="Logo PTPN" />
       </a>
 
       <button class="navbar-toggler text-white ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">

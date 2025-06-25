@@ -544,7 +544,17 @@ session_start();
         ];
         const uapMasukLabels = [0, 10, 20, 30, 40]; // Label kustom
         // Nilai aktual dan maksimum disesuaikan kembali ke gambar 2, tapi label tetap custom
-        drawGauge('gauge1', 22, 40, uapMasukRanges, uapMasukLabels);
+        drawGauge('gauge1', 50, 40, uapMasukRanges, uapMasukLabels);
+        fetch('http://api-jurnal-ptpn/api/uap-masuk')
+            .then(response => response.json())
+            .then(result => {
+                const value = parseFloat(result.data.uap_masuk); // misal: 50.00 dari API
+                const maxGaugeValue = 40; // batas maksimum visual pada gauge (label)
+                drawGauge('gauge1', value, maxGaugeValue, uapMasukRanges, uapMasukLabels);
+            })
+            .catch(error => {
+                console.error('❌ Gagal mengambil data uap_masuk:', error);
+            });
 
         // 2. Uap Sisa
         const uapSisaRanges = [

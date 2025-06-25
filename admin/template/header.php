@@ -157,7 +157,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <nav class="navbar navbar-expand-lg custom-navbar" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;">
   <div class="container-fluid"> 
     <a class="navbar-brand" href="#">
-      <img src="../images/logo_perkebunan_nusantara.jpg" alt="Logo PTPN" />
+      <img src="../images/logo_perkebunan_nusantara.png" alt="Logo PTPN" />
     </a>
 
     <button class="navbar-toggler text-white ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">

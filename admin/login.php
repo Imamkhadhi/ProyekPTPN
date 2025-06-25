@@ -89,7 +89,7 @@
   <!-- Header -->
   <header class="p-3 d-flex align-items-center">
     <div class="nav-left d-flex align-items-center">
-      <img src="../images/logo_perkebunan_nusantara.jpg" alt="Logo">
+      <img src="../images/logo_perkebunan_nusantara.png" alt="Logo">
       <a href="index.html">
         <h1 class="ms-2" style="color: black;">PT<span style="color: green;">PN</span></h1>
       </a>

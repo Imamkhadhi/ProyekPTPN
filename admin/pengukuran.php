@@ -145,6 +145,13 @@ session_start();
     /* End Navbar styling */
 
     /* Gauge and description styling */
+     h3.section-title {
+      text-align: center;
+      margin: 50px 0 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
     .gauge-container {
       display: grid;
       /* Menggunakan auto-fit untuk responsif, minmax untuk ukuran item */
@@ -267,7 +274,7 @@ session_start();
   <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid"> 
       <a class="navbar-brand" href="#">
-        <img src="../images/logo_perkebunan_nusantara.jpg" alt="Logo PTPN" />
+        <img src="../images/logo_perkebunan_nusantara.png" alt="Logo PTPN" />
       </a>
 
       <button class="navbar-toggler text-white ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
@@ -302,6 +309,7 @@ session_start();
     </div>
   </nav>
 
+  <h3 class="section-title">Meteran Turbin</h3>
   <div class="gauge-container">
     <div>
       <div class="gauge-frame">
@@ -348,6 +356,9 @@ session_start();
         </div>
       </div>
     </div>
+  </div>
+  <h3 class="section-title">Meteran Panel</h3>
+  <div class="gauge-container">
     <div>
       <div class="gauge-frame">
         <canvas id="gauge5" width="150" height="150"></canvas>

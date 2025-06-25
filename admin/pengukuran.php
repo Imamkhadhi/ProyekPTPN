@@ -187,6 +187,9 @@ session_start();
         canvas {
             border-radius: 50%;
             margin-right: 20px;
+            /* Perbesar ukuran canvas di sini */
+            width: 200px; /* Lebar baru */
+            height: 200px; /* Tinggi baru */
         }
 
         .gauge-description {
@@ -227,8 +230,8 @@ session_start();
                 padding: 10px;
             }
             canvas {
-                width: 120px;
-                height: 120px;
+                width: 150px; /* Sesuaikan ukuran canvas untuk tablet */
+                height: 150px;
                 margin-right: 15px;
             }
         }
@@ -246,8 +249,8 @@ session_start();
                 padding: 15px;
             }
             canvas {
-                width: 150px;
-                height: 150px;
+                width: 200px; /* Ukuran canvas mobile */
+                height: 200px;
                 margin-right: 0;
                 margin-bottom: 10px;
             }
@@ -314,7 +317,7 @@ session_start();
     <div class="gauge-container">
         <div>
             <div class="gauge-frame">
-                <canvas id="gauge1" width="150" height="150"></canvas>
+                <canvas id="gauge1" width="200" height="200"></canvas>
                 <div class="gauge-description">
                     <h4>Uap Masuk</h4>
                     <p><span>🟥</span> : 0 - 14,9 Bar</p>
@@ -326,7 +329,7 @@ session_start();
         </div>
         <div>
             <div class="gauge-frame">
-                <canvas id="gauge2" width="150" height="150"></canvas>
+                <canvas id="gauge2" width="200" height="200"></canvas>
                 <div class="gauge-description">
                     <h4>Uap Sisa</h4>
                     <p><span>🟥</span> : 0 - 1,9 Bar</p>
@@ -338,7 +341,7 @@ session_start();
         </div>
         <div>
             <div class="gauge-frame">
-                <canvas id="gauge3" width="150" height="150"></canvas>
+                <canvas id="gauge3" width="200" height="200"></canvas>
                 <div class="gauge-description">
                     <h4>Tekanan Oli</h4>
                     <p><span>🟥</span> : < 1 Bar</p>
@@ -349,7 +352,7 @@ session_start();
         </div>
         <div>
             <div class="gauge-frame">
-                <canvas id="gauge4" width="150" height="150"></canvas>
+                <canvas id="gauge4" width="200" height="200"></canvas>
                 <div class="gauge-description">
                     <h4>Cooling Water</h4>
                     <p><span>🟩</span> : 0 - 63 °C</p>
@@ -362,7 +365,7 @@ session_start();
     <div class="gauge-container">
         <div>
             <div class="gauge-frame">
-                <canvas id="gauge5" width="150" height="150"></canvas>
+                <canvas id="gauge5" width="200" height="200"></canvas>
                 <div class="gauge-description">
                     <h4>Voltase</h4>
                     <p><span>🟨</span> : < 370 V</p>
@@ -373,7 +376,7 @@ session_start();
         </div>
         <div>
             <div class="gauge-frame">
-                <canvas id="gauge6" width="150" height="150"></canvas>
+                <canvas id="gauge6" width="200" height="200"></canvas>
                 <div class="gauge-description">
                     <h4>Amper</h4>
                     <p><span>🟩</span> : < 600 A</p>
@@ -383,7 +386,7 @@ session_start();
         </div>
         <div>
             <div class="gauge-frame">
-                <canvas id="gauge7" width="150" height="150"></canvas>
+                <canvas id="gauge7" width="200" height="200"></canvas>
                 <div class="gauge-description">
                     <h4>Daya (KW)</h4>
                     <p><span>🟩</span> : < 550 kW</p>
@@ -394,7 +397,7 @@ session_start();
         </div>
         <div>
             <div class="gauge-frame">
-                <canvas id="gauge8" width="150" height="150"></canvas>
+                <canvas id="gauge8" width="200" height="200"></canvas>
                 <div class="gauge-description">
                     <h4>Frekuensi (Hz)</h4>
                     <p><span>🟥</span> : < 49 Hz</p>
@@ -412,7 +415,7 @@ session_start();
             const ctx = canvas.getContext('2d');
             const radius = canvas.width / 2;
             const center = radius;
-            const gaugeScaleMax = 4; // Tetap gunakan 6 skala untuk internal gauge mapping
+            const gaugeScaleMax = 6; // Tetap gunakan 6 skala untuk internal gauge mapping
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -427,7 +430,7 @@ session_start();
 
             // Background gauge
             ctx.beginPath();
-            ctx.arc(center, center, radius - 10, Math.PI, 0);
+            ctx.arc(center, center, radius - 10, Math.PI, 0, true); // true = counter-clockwise (bagian atas lingkaran)
             ctx.lineWidth = 4;
             ctx.strokeStyle = '#ccc';
             ctx.stroke();
@@ -453,11 +456,11 @@ session_start();
                 startValNormalized = Math.max(0, Math.min(gaugeScaleMax, startValNormalized));
                 endValNormalized = Math.max(0, Math.min(gaugeScaleMax, endValNormalized));
 
-                const startAngle = Math.PI - (startValNormalized / gaugeScaleMax) * Math.PI;
-                const endAngle = Math.PI - (endValNormalized / gaugeScaleMax) * Math.PI;
+                const startAngle = Math.PI - (endValNormalized / gaugeScaleMax) * Math.PI; // Ini akan menjadi sudut "kiri" range
+                const endAngle = Math.PI - (startValNormalized / gaugeScaleMax) * Math.PI; // Ini akan menjadi sudut "kanan" range
 
                 ctx.beginPath();
-                ctx.arc(center, center, radius - 10, startAngle, endAngle, true);
+                ctx.arc(center, center, radius - 10, startAngle, endAngle, true); // true = counter-clockwise
                 ctx.lineWidth = 4;
                 ctx.strokeStyle = mapEmojiToColor(range.emoji);
                 ctx.stroke();
@@ -472,7 +475,8 @@ session_start();
             const numSegments = labelsToDraw.length - 1;
 
             for (let i = 0; i <= numSegments; i++) {
-                const angle = Math.PI * (1 - i / numSegments);
+                const angle = Math.PI - (i / numSegments) * Math.PI; // Inversi perhitungan sudut
+
                 const tickLength = 10;
                 const x1 = center + Math.cos(angle) * (radius - 10 - tickLength);
                 const y1 = center + Math.sin(angle) * (radius - 10 - tickLength);
@@ -488,8 +492,10 @@ session_start();
 
                 const actualLabel = labelsToDraw[i];
 
-                const xLabel = center + Math.cos(angle) * (radius - 35);
-                const yLabel = center + Math.sin(angle) * (radius - 35);
+                const labelOffset = radius - 25; // Sesuaikan nilai ini untuk mengontrol jarak label dari pusat
+                const xLabel = center + Math.cos(angle) * labelOffset;
+                const yLabel = center + Math.sin(angle) * labelOffset;
+
                 ctx.font = '12px Arial';
                 ctx.fillStyle = 'black';
                 ctx.textAlign = 'center';
@@ -497,26 +503,35 @@ session_start();
                 ctx.fillText(actualLabel, xLabel, yLabel);
             }
 
-            // Minor ticks (optional)
-            for (let i = 0.5; i < gaugeScaleMax; i += 0.5) {
-                const angle = Math.PI * (1 - i / gaugeScaleMax);
-                const tickLength = 5;
-                const x1 = center + Math.cos(angle) * (radius - 10 - tickLength);
-                const y1 = center + Math.sin(angle) * (radius - 10 - tickLength);
-                const x2 = center + Math.cos(angle) * (radius - 10);
-                const y2 = center + Math.sin(angle) * (radius - 10);
+            // Minor ticks - SELALU 9 garis kecil di antara setiap garis besar
+            const fixedMinorTickFactor = 9; // Tetapkan ini menjadi 9
+            if (fixedMinorTickFactor > 0 && numSegments > 0) { // Pastikan ada segmen mayor untuk minor ticks
+                for (let i = 0; i < numSegments; i++) {
+                    // Iterasi untuk setiap garis kecil di dalam segmen
+                    for (let j = 1; j <= fixedMinorTickFactor; j++) { // Mulai dari 1 untuk garis di antara, berakhir di fixedMinorTickFactor
+                        const currentMinorTickValue = i + (j / (fixedMinorTickFactor + 1)); // Menghitung posisi minor tick secara proporsional
+                        const angle = Math.PI - (currentMinorTickValue / numSegments) * Math.PI; // Inversi perhitungan sudut
+                        
+                        const tickLength = 5; // Panjang tick minor
+                        const x1 = center + Math.cos(angle) * (radius - 10 - tickLength);
+                        const y1 = center + Math.sin(angle) * (radius - 10 - tickLength);
+                        const x2 = center + Math.cos(angle) * (radius - 10);
+                        const y2 = center + Math.sin(angle) * (radius - 10);
 
-                ctx.beginPath();
-                ctx.moveTo(x1, y1);
-                ctx.lineTo(x2, y2);
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = 'black';
-                ctx.stroke();
+                        ctx.beginPath();
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = 'black';
+                        ctx.stroke();
+                    }
+                }
             }
+
 
             // Draw needle
             const normalizedCurrentValue = Math.max(0, Math.min(actualMaxParamValue, actualValue));
-            const needleAngle = Math.PI * (1 - (normalizedCurrentValue / actualMaxParamValue));
+            const needleAngle = Math.PI - (normalizedCurrentValue / actualMaxParamValue) * Math.PI; // Inversi perhitungan sudut
 
             const xNeedle = center + Math.cos(needleAngle) * (radius - 50);
             const yNeedle = center + Math.sin(needleAngle) * (radius - 50);
@@ -545,12 +560,12 @@ session_start();
         ];
         const uapMasukLabels = [0, 10, 20, 30, 40]; // Label kustom
         // Nilai aktual dan maksimum disesuaikan kembali ke gambar 2, tapi label tetap custom
-        drawGauge('gauge1', 50, 40, uapMasukRanges, uapMasukLabels);
+        drawGauge('gauge1', 22, 40, uapMasukRanges, uapMasukLabels);
         fetch('http://api-jurnal-ptpn/api/uap-masuk')
             .then(response => response.json())
             .then(result => {
-                const value = parseFloat(result.data.uap_masuk); // misal: 50.00 dari API
-                const maxGaugeValue = 40; // batas maksimum visual pada gauge (label)
+                const value = parseFloat(result.data.uap_masuk);
+                const maxGaugeValue = 40;
                 drawGauge('gauge1', value, maxGaugeValue, uapMasukRanges, uapMasukLabels);
             })
             .catch(error => {
@@ -565,7 +580,6 @@ session_start();
             { start: 3.1, end: 3.2, emoji: '🟥' }
         ];
         const uapSisaLabels = [0, 1, 2, 3, 4, 5, 6]; // Label kustom
-        // Nilai aktual dan maksimum disesuaikan kembali ke gambar 2, tapi label tetap custom
         drawGauge('gauge2', 3.2, 6, uapSisaRanges, uapSisaLabels);
 
         // 3. Tekanan Oli
@@ -575,7 +589,6 @@ session_start();
             { start_op: '>', start: 1.5, emoji: '🟥' }
         ];
         const tekananOliLabels = [0, 1, 2, 3, 4, 5, 6]; // Label kustom
-        // Nilai aktual dan maksimum disesuaikan kembali ke gambar 2, tapi label tetap custom
         drawGauge('gauge3', 2, 6, tekananOliRanges, tekananOliLabels);
 
         // 4. Temperatur Cooling Water
@@ -584,7 +597,6 @@ session_start();
             { start: 64, end_op: '>', emoji: '🟥' }
         ];
         const coolingWaterLabels = [0, 20, 40, 60, 80, 100]; // Label kustom
-        // Nilai aktual dan maksimum disesuaikan kembali ke gambar 2, tapi label tetap custom
         drawGauge('gauge4', 83, 100, coolingWaterRanges, coolingWaterLabels);
 
         // 5. Voltase

@@ -264,6 +264,7 @@ session_start();
             display: none;
         }
     </style>
+    <meta http-equiv="refresh" content="5">
 </head>
 <body>
     <?php

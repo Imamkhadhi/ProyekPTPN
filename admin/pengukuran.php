@@ -546,7 +546,7 @@ session_start();
         const uapMasukLabels = [0, 10, 20, 30, 40]; // Label kustom
         // Nilai aktual dan maksimum disesuaikan kembali ke gambar 2, tapi label tetap custom
         drawGauge('gauge1', 50, 40, uapMasukRanges, uapMasukLabels);
-        fetch('http://api-jurnal-ptpn/api/uap-masuk')
+        fetch('https://api-jurnal-ptpn.solvethink.id/api/uap-masuk')
             .then(response => response.json())
             .then(result => {
                 const value = parseFloat(result.data.uap_masuk); // misal: 50.00 dari API

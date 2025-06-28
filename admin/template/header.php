@@ -1,5 +1,13 @@
 <?php 
-session_start(); 
+session_start();
+
+// Cek apakah user sudah login
+if (!isset($_SESSION['username'])) {
+    // Redirect ke halaman login
+    header("Location: ../login.php");
+    exit;
+}
+
 include "koneksi.php"; 
 define('HOST', "http://localhost/assesment2/index.html");
 $currentPage = basename($_SERVER['PHP_SELF']); 
@@ -178,13 +186,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
       </div>
 
       <div class="ms-auto d-none d-lg-block">
-        <a class="logout-btn" href="login.php" title="Logout">
+        <a class="logout-btn" href="logout.php" title="Logout">
           <i class="bi bi-box-arrow-right"></i>
         </a>
       </div>
 
       <div class="ms-auto d-lg-none">
-        <a class="logout-btn" href="login.php" title="Logout">
+        <a class="logout-btn" href="logout.php" title="Logout">
           <i class="bi bi-box-arrow-right"></i> Logout
         </a>
       </div>

@@ -13,7 +13,7 @@
 
   <style>
     body {
-      background-image: url(../images/login-bg4.png);
+      background-image: url(images/login-bg4.png);
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -89,7 +89,7 @@
   <!-- Header -->
   <header class="p-3 d-flex align-items-center">
     <div class="nav-left d-flex align-items-center">
-      <img src="../images/logo_perkebunan_nusantara.png" alt="Logo">
+      <img src="images/logo_perkebunan_nusantara.png" alt="Logo">
       <a href="index.html">
         <h1 class="ms-2" style="color: black;">PT<span style="color: green;">PN</span></h1>
       </a>
@@ -103,10 +103,10 @@
         <div class="col-lg-10">
           <div class="login-card">
             <div class="mb-3">
-              <a href="index.html"></a>
+              <!-- <a href="index.html"></a> -->
             </div>
             <h2 class="mb-3 text-center">Login To your Account</h2>
-            <form class="login-form" action="autentikasi-login.php" method="post">
+            <form class="login-form" action="admin/autentikasi-login.php" method="post">
               <label for="username">Username</label>
               <input type="text" name="username" id="username" class="form-control" required>
 
@@ -115,9 +115,9 @@
 
               <button type="submit" name="btn-submit">Login</button>
 
-              <div class="text-end mt-2">
+              <!-- <div class="text-end mt-2">
                 <a href="#">Forgot Password?</a>
-              </div>
+              </div> -->
 
               <!-- <div class="text-center mt-3">
                 <span>Belum punya akun?</span> <a href="register.html">Register disini</a>

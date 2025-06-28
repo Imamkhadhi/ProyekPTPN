@@ -127,8 +127,6 @@ foreach ($dataJurnal as $row) {
     $html .= '<td></td><td></td><td></td>';
     $html .= '<td>&nbsp;</td>'; // % Sesuai
     $html .= '<td>&nbsp;</td>'; // Keterangan Kendala
-    $html .= '<td>&nbsp;</td>'; // Rencana Tindak Lanjut
-    $html .= '<td>&nbsp;</td>'; // Paraf Asisten
 
     $html .= '</tr>';
 }

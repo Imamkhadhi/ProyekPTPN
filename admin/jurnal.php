@@ -30,7 +30,7 @@ $sqlstatement = "SELECT
     ampere,
     kw,
     frekuensi
-FROM jurnal ORDER BY id_jurnal DESC
+FROM jurnal ORDER BY id_jurnal ASC
 LIMIT $records_per_page OFFSET $offset";
 
 $query = mysqli_query($conn, $sqlstatement);

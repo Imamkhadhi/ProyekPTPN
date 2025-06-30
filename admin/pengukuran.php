@@ -443,35 +443,52 @@ if (!isset($_SESSION['username'])) {
             ctx.stroke();
 
             // Draw colored ranges
+            // Cari dan gambar hanya 1 range yang sesuai dengan nilai aktual
             for (const range of rangesData) {
-                let startValActual = 0;
-                let endValActual = actualMaxParamValue;
-
+                let inRange = false;
                 if (range.start_op === '<') {
-                    endValActual = range.end;
+                    inRange = actualValue < range.end;
                 } else if (range.end_op === '>') {
-                    startValActual = range.start;
-                } else {
-                    startValActual = range.start;
-                    endValActual = range.end;
+                    inRange = actualValue > range.start;
+                } else if (range.start !== undefined && range.end !== undefined) {
+                    inRange = actualValue >= range.start && actualValue <= range.end;
                 }
 
-                let startValNormalized = mapToGaugeScale(startValActual);
-                let endValNormalized = mapToGaugeScale(endValActual);
+                if (inRange) {
+                    let startValActual = 0;
+                    let endValActual = actualMaxParamValue;
 
-                // Pastikan nilai berada dalam batas 0 dan gaugeScaleMax
-                startValNormalized = Math.max(0, Math.min(gaugeScaleMax, startValNormalized));
-                endValNormalized = Math.max(0, Math.min(gaugeScaleMax, endValNormalized));
+                    if (range.start_op === '<') {
+                        endValActual = range.end;
+                        startValActual = 0;
+                    } else if (range.end_op === '>') {
+                        startValActual = range.start;
+                        endValActual = actualMaxParamValue;
+                    } else {
+                        startValActual = range.start;
+                        endValActual = range.end;
+                    }
 
-                const startAngle = Math.PI - (endValNormalized / gaugeScaleMax) * Math.PI; // Ini akan menjadi sudut "kiri" range
-                const endAngle = Math.PI - (startValNormalized / gaugeScaleMax) * Math.PI; // Ini akan menjadi sudut "kanan" range
+                    let startValNormalized = mapToGaugeScale(startValActual);
+                    let endValNormalized = mapToGaugeScale(endValActual);
 
-                ctx.beginPath();
-                ctx.arc(center, center, radius - 10, startAngle, endAngle, true); // true = counter-clockwise
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = mapEmojiToColor(range.emoji);
-                ctx.stroke();
+                    // Clamp ke dalam 0 hingga gaugeScaleMax
+                    startValNormalized = Math.max(0, Math.min(gaugeScaleMax, startValNormalized));
+                    endValNormalized = Math.max(0, Math.min(gaugeScaleMax, endValNormalized));
+
+                    const startAngle = Math.PI - (endValNormalized / gaugeScaleMax) * Math.PI;
+                    const endAngle = Math.PI - (startValNormalized / gaugeScaleMax) * Math.PI;
+
+                    ctx.beginPath();
+                    ctx.arc(center, center, radius - 10, startAngle, endAngle, true);
+                    ctx.lineWidth = 4;
+                    ctx.strokeStyle = mapEmojiToColor(range.emoji);
+                    ctx.stroke();
+
+                    break; // ⛔ Hanya gambar satu range yang cocok
+                }
             }
+
 
             // Major ticks and labels
             const labelsToDraw = customLabels || Array.from({length: gaugeScaleMax + 1}, (_, i) => {
@@ -596,7 +613,7 @@ if (!isset($_SESSION['username'])) {
             { start_op: '>', start: 1.5, emoji: '🟥' }
         ];
         const tekananOliLabels = [0, 1, 2, 3, 4, 5, 6]; // Label kustom
-        drawGauge('gauge3', 2, 6, tekananOliRanges, tekananOliLabels);
+        drawGauge('gauge3', 1, 6, tekananOliRanges, tekananOliLabels);
 
         // 4. Temperatur Cooling Water
         const coolingWaterRanges = [

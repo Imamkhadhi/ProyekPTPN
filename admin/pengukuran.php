@@ -458,16 +458,22 @@ if (!isset($_SESSION['username'])) {
                     let startValActual = 0;
                     let endValActual = actualMaxParamValue;
 
+                   let inRange = false;
+
                     if (range.start_op === '<') {
-                        endValActual = range.end;
-                        startValActual = 0;
+                        inRange = actualValue < range.end;
                     } else if (range.end_op === '>') {
-                        startValActual = range.start;
-                        endValActual = actualMaxParamValue;
-                    } else {
-                        startValActual = range.start;
-                        endValActual = range.end;
+                        inRange = actualValue > range.start;
+                    } else if (range.start !== undefined && range.end_op === '>') {
+                        // Menangani: { start: 64, end_op: '>' }
+                        inRange = actualValue > range.start;
+                    } else if (range.end !== undefined && range.start_op === '<') {
+                        // Menangani: { end: 10, start_op: '<' }
+                        inRange = actualValue < range.end;
+                    } else if (range.start !== undefined && range.end !== undefined) {
+                        inRange = actualValue >= range.start && actualValue <= range.end;
                     }
+
 
                     let startValNormalized = mapToGaugeScale(startValActual);
                     let endValNormalized = mapToGaugeScale(endValActual);
@@ -621,7 +627,7 @@ if (!isset($_SESSION['username'])) {
             { start: 64, end_op: '>', emoji: '🟥' }
         ];
         const coolingWaterLabels = [0, 20, 40, 60, 80, 100]; // Label kustom
-        drawGauge('gauge4', 83, 100, coolingWaterRanges, coolingWaterLabels);
+        drawGauge('gauge4', 60, 100, coolingWaterRanges, coolingWaterLabels);
 
         // 5. Voltase
         const voltaseRanges = [

@@ -5,7 +5,12 @@ include "koneksi.php";
 use Dompdf\Dompdf;
 
 // Ambil data jurnal dari database
-$query = mysqli_query($conn, "SELECT tanggal, jam, uap_masuk, uap_bekas, tekanan_oli, cooling_water, voltase, ampere, kw, frekuensi FROM jurnal ORDER BY id_jurnal ASC LIMIT 24");
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$limit = 24;
+$offset = ($page - 1) * $limit;
+
+$query = mysqli_query($conn, "SELECT * FROM jurnal ORDER BY id_jurnal ASC LIMIT $limit OFFSET $offset");
+
 $dataJurnal = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
 // Siapkan path absolut gambar logo (HARUS BASE64 untuk DOMPDF)

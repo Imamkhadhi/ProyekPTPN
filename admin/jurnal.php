@@ -165,7 +165,7 @@ $dataJurnal = mysqli_fetch_all($query, MYSQLI_ASSOC);
                 </li>
             </ul>
         </nav>
-        <a href="pdf.php"><button type="button" class="btn btn-success">Print</button></a>
+        <a href="pdf.php?page=<?= $current_page ?>"><button type="button" class="btn btn-success">Print</button></a>
     </div>
 </div>
 

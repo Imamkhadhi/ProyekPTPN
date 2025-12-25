@@ -590,8 +590,8 @@ if (!isset($_SESSION['username'])) {
         ];
         const uapMasukLabels = [0, 10, 20, 30, 40]; // Label kustom
         // Nilai aktual dan maksimum disesuaikan kembali ke gambar 2, tapi label tetap custom
-        drawGauge('gauge1', 'https://api-jurnal-ptpn.solvethink.id/api/uap-masuk', 40, uapMasukRanges, uapMasukLabels);
-        fetch('https://api-jurnal-ptpn.solvethink.id/api/uap-masuk')
+        drawGauge('gauge1', 'https://api-jurnal-ptpn.teluapp.org/api/uap-masuk', 40, uapMasukRanges, uapMasukLabels);
+        fetch('https://api-jurnal-ptpn.teluapp.org/api/uap-masuk')
             .then(response => response.json())
             .then(result => {
                 const value = parseFloat(result.data.uap_masuk);

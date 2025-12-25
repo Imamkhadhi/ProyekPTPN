@@ -635,7 +635,7 @@ if (!isset($_SESSION['username'])) {
             { start: 371, end: 390, emoji: '🟩' },
             { start_op: '>', start: 390, emoji: '🟥' }
         ];
-        drawGauge('gauge5', 380, 400, voltaseRanges);
+        drawGauge('gauge5', 333, 400, voltaseRanges);
 
         // 6. Amper
         const amperRanges = [
